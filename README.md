@@ -164,6 +164,9 @@ req.validate({
 // ?a[0]=b&a[1]=c&a[2]=d  => false
 ```
 
+If no type is specified, validator will do its best to guess. To ensure that you get the expected result, it is recommended to provide a type.
+
+
 ### model.each
 Checks that each value of the Object/Array meets condition. Return:
 
@@ -182,8 +185,6 @@ req.validate({
 // ?a[0]=b&a[4]=c  => true
 // ?a[0]=b&a[2]=c  => false
 ```
-
-If no type is specified, validator will do its best to guess. To ensure that you get the expected result, it is recommended to provide a type.
 
 
 ### model.validator
