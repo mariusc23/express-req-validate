@@ -1,7 +1,7 @@
 {
   "name": "express-req-validate",
-  "version": "1.0.0",
-  "description": "Convert query strings to numbers for express/connect applications.",
+  "version": "1.0.2",
+  "description": "Mongoose-inspired req.query and req.body validator for express/connect servers.",
   "main": "index.js",
   "directories": {
     "test": "test"
