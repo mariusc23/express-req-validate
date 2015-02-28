@@ -37,6 +37,15 @@ app.route('/required').get(function(req, res, next) {
   res.json(req.validateError);
 });
 
+app.route('/omitted').get(function(req, res, next) {
+  req.validate({
+    a: {
+      omitted: true
+    }
+  });
+  res.json(req.validateError);
+});
+
 app.route('/type/number').get(function(req, res, next) {
   req.validate({
     a: {

@@ -57,6 +57,33 @@ exports.server = {
     });
   },
 
+  omitted: function(test) {
+    test.expect(3);
+
+    async.parallel([
+      function(next) {
+        request.get(u + '/omitted', function(res) {
+          test.notEqual(res.body.status, 400, 'Passes when omitted parameter missing.');
+          next();
+        });
+      },
+      function(next) {
+        request.get(u + '/omitted?a', function(res) {
+          test.equal(res.body.status, 400, 'Fails when omitted parameter is present.');
+          next();
+        });
+      },
+      function(next) {
+        request.get(u + '/omitted?a=0', function(res) {
+          test.equal(res.body.status, 400, 'Fails when omitted parameter has a value.');
+          next();
+        });
+      }
+    ], function(err) {
+      test.done();
+    });
+  },
+
   typeNumber: function(test) {
     test.expect(3);
 

@@ -29,11 +29,29 @@ exports.parser = {
 
   required: function(test) {
     test.equal(v.required(undefined, true), false, 'Fails for undefined.');
-    test.equal(v.required(null, true), true, 'Passes for for null.');
-    test.equal(v.required(0, true), true, 'Passes for for 0.');
-    test.equal(v.required(-1, true), true, 'Passes for for negative number.');
-    test.equal(v.required('', true), true, 'Passes for for empty string.');
-    test.equal(v.required(undefined, false), true, 'Passes for for optional parameter.');
+    test.equal(v.required(null, true), true, 'Passes for null.');
+    test.equal(v.required(0, true), true, 'Passes for 0.');
+    test.equal(v.required(-1, true), true, 'Passes for negative number.');
+    test.equal(v.required('', true), true, 'Passes for empty string.');
+    test.equal(v.required(undefined, false), true, 'Passes for optional parameter.');
+
+    test.done();
+  },
+
+  omitted: function(test) {
+    test.equal(v.omitted(undefined, true), true, 'Passes undefined.');
+    test.equal(v.omitted('', true), false, 'Fails for empty string.');
+    test.equal(v.omitted(0, true), false, 'Fails for 0.');
+    test.equal(v.omitted(-1, true), false, 'Fails for negative number.');
+    test.equal(v.omitted(null, true), false, 'Fails for null.');
+    test.equal(v.omitted(false, true), false, 'Fails for false.');
+    test.equal(v.omitted(true, false), true, 'Passes for non-omitted.');
+    test.equal(v.omitted(true, function(value) {
+      return value;
+    }), true, 'Passes custom function.');
+    test.equal(v.omitted(true, function(value) {
+      return new Error('Custom Message');
+    }).message, 'Custom Message', 'Shows custom message.');
 
     test.done();
   },

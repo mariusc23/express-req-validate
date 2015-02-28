@@ -1,6 +1,6 @@
 {
   "name": "express-req-validate",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Mongoose-inspired req.query and req.body validator for express/connect servers.",
   "main": "index.js",
   "directories": {
